@@ -1,0 +1,238 @@
+.smallFont {
+  font-size: 10px;
+}
+.fullPage,
+.loginWrapper {
+  width: 100vw;
+  height: 100vh;
+}
+.full {
+  width: 100%;
+  height: 100%;
+}
+.flex1 {
+  flex: 1 !important;
+}
+.blackHalf {
+  width: 100vw;
+  height: 40vh;
+  padding: 5px;
+}
+.bigFont {
+  font-size: 45px;
+  color: #f57d43;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.font24 {
+  font-size: 24px;
+}
+.font30 {
+  font-size: 30px;
+}
+.font10 {
+  font-size: 10px;
+}
+.font8 {
+  font-size: 8px;
+}
+.centerEverything,
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginContainer {
+  box-shadow: 0 0 6px 1px #00000029;
+  z-index: 99;
+  border-radius: 8px;
+  color: #f25c13;
+  background: #fff;
+  transform: scale(0.5);
+  transition: transform 0.3s ease-in-out;
+}
+.zoom {
+  transform: scale(1);
+}
+.showPassword {
+  position: absolute;
+  width: calc(100% - 46px);
+}
+.passwordToggler {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 12px;
+}
+.inputField {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #f57d43 !important;
+  padding: 5px;
+}
+.inputLabel {
+  color: #181a1b;
+  font-size: 14px;
+  /* margin-left: 5px; */
+}
+input,
+button {
+  margin: 0;
+  outline: 0;
+  border: 0;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+::-webkit-scrollbar-thumb {
+  background: #f57d43;
+  border-radius: 8px;
+}
+.themeBtn {
+  background: #f57d43;
+  border-radius: 4px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: 700;
+}
+.font15 {
+  font-size: 15px;
+}
+.navLink {
+  font-size: 15px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 900;
+}
+.navLink:hover {
+  background: #000;
+  color: #f57d43;
+}
+.leftContainer {
+  color: #fff;
+}
+.aboutUs {
+  position: fixed;
+  right: -40vw;
+  top: 0px;
+  z-index: 999;
+  width: 40vw;
+  background: #ffffff;
+  color: #000000;
+  height: 100vh;
+  box-shadow: 0 0 5px 2px #00000029;
+  padding: 5px;
+  transform: translate();
+  transition: 0.5s all ease-in-out;
+}
+.transparentDiv {
+  width: 60vw;
+  left: -60vw;
+  height: 100vh;
+  transition: 0.5s all ease-in-out;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  transform: translate();
+  z-index: 999;
+}
+.active {
+  right: 0px;
+  transition: 0.5s all ease-in-out;
+}
+.activeT {
+  left: 0;
+  transition: 0.5s all ease-in-out;
+}
+.themeHeader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  background: #f57d43;
+  padding: 5px;
+  z-index: 99;
+}
+.myContainer {
+  border: 1px solid black;
+  max-height: 50vh;
+  overflow-y: scroll;
+  margin: 10px;
+  background: #181a1b;
+}
+.weatherCard,
+.selectedWeatherCard {
+  border-bottom: 1px solid #c0c0c0;
+  padding: 5px;
+  background: #181a1b;
+  color: #fff;
+}
+.loginWrapper {
+  color: red;
+}
+.selectedWeatherCard {
+  background: #f57d43 !important;
+}
+.themeFont {
+  color: #f57d43;
+}
+.impText {
+  font-size: 20px;
+  font-weight: 900;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-transform: capitalize;
+}
+.cotainerHeader {
+  position: sticky;
+  top: 0;
+  background: #fac0a4;
+  padding: 5px;
+  font-weight: bold;
+}
+.bgImageClass {
+  width: 500px;
+}
+@keyframes zoomAnim {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media screen and (max-width: 700px) {
+  .cardHoldder,
+  .navbar {
+    flex-direction: column;
+  }
+  .loginContainer {
+    width: 100vw;
+    height: 100vh;
+    transform: scale(1);
+    box-shadow: none;
+  }
+  .loginPage {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+  }
+  .loginWrapper {
+    width: 100vw;
+    height: 100vh;
+  }
+  .blackHalf {
+    height: 0;
+  }
+  .bgImageClass {
+    width: 100px;
+  }
+}

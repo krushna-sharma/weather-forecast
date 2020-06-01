@@ -1,0 +1,317 @@
+@primaryColor : #181a1b;
+@secondaryColor: #f57d43;
+
+.lightBackground(@colorr) {
+    background: lighten(@colorr, 20%);
+}
+
+.border-radius(@radius) {
+    border-radius: @radius;
+}
+
+.set-font(@f-size) {
+    font-size: @f-size;
+}
+
+.smallFont {
+    .set-font(10px);
+}
+
+.addShadow() {
+    box-shadow: 0 0 5px 2px #00000029;
+}
+
+.slideAnimation(){
+    transition: 0.5s all ease-in-out;
+}
+
+.fullPage {
+    width: 100vw;
+    height: 100vh;
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+}
+
+.flex1 {
+    flex: 1 !important;
+}
+
+.blackHalf {
+    width: 100vw;
+    height: 40vh;
+    // background: @secondaryColor;
+    padding: 5px;
+    // background: rgb(247, 249, 249);
+    // background: linear-gradient(13deg, rgba(247, 249, 249, 1) 0%, rgba(255, 115, 0, 1) 100%);
+    // background: rgb(247,249,249);
+    // background: radial-gradient(circle, rgba(247,249,249,1) 0%, rgba(255,115,0,1) 100%);
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+}
+
+.bigFont {
+    font-size: 45px;
+    color: @secondaryColor;
+    // color: #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.font24{
+    .set-font(24px)
+}
+
+.font30{
+    .set-font(30px)
+}
+
+.font10{
+    .set-font(10px)
+}
+
+.font8{
+    .set-font(8px)
+}
+
+.centerEverything {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer {
+    box-shadow: 0 0 6px 1px #00000029;
+    // border: 1px solid @secondaryColor;
+    // max-width: 350px;
+    // max-height: 400px;
+    // width: 60vw;
+    // height: 80vh;
+    z-index: 99;
+    .border-radius(8px);
+    // .lightBackground(blue);
+    color: darken(@secondaryColor, 10%);
+    background: #fff;
+    transform: scale(0.5);
+    transition: transform .3s ease-in-out;
+    // animation: zoomAnim  0.3s ease-in-out;
+}
+
+.zoom {
+    transform: scale(1);
+}
+
+.showPassword {
+    position: absolute;
+    width: calc(100% - 46px);
+}
+
+.passwordToggler {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 12px;
+}
+
+.inputField {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid @secondaryColor  !important;
+    padding: 5px;
+}
+
+.inputLabel {
+    color: @primaryColor;
+    font-size: 14px;
+    /* margin-left: 5px; */
+}
+
+input,
+button {
+    margin: 0;
+    outline: 0;
+    border: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: @secondaryColor;
+    border-radius: 8px;
+  }
+
+.themeBtn {
+    background: @secondaryColor;
+    .border-radius(4px);
+    padding: 5px 10px;
+    color: #fff;
+    // box-shadow: 0 0 5px 2px #00000029;
+    font-weight: 700;
+    // text-transform: uppercase;
+}
+
+.font15 {
+    font-size: 15px;
+}
+
+.navLink {
+    font-size: 15px;
+    padding: 2px 5px;
+    .border-radius(4px);
+    cursor: pointer;
+    font-weight: 900;
+
+    &:hover {
+        background: #000;
+        color: @secondaryColor;
+    }
+}
+
+.leftContainer{
+    color: #fff;
+}
+
+.aboutUs {
+    position: fixed;
+    right: -40vw;
+    top: 0px;
+    z-index: 999;
+    width: 40vw;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    height: 100vh;
+    .addShadow();
+    padding: 5px;
+    transform: translate();
+    .slideAnimation();
+}
+
+.transparentDiv{
+    width: 60vw;
+    left: -60vw;
+    height: 100vh;
+    .slideAnimation();
+    background-color: rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    transform: translate();
+    z-index: 999;
+}
+
+.active {
+    right: 0px;
+    .slideAnimation();
+  }
+
+  .activeT{
+      left: 0;
+      .slideAnimation();
+  }
+
+.themeHeader {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    background: @secondaryColor;
+    padding: 5px;
+    z-index: 99;
+}
+
+.myContainer {
+    border: 1px solid black;
+    max-height: 50vh;
+    overflow-y: scroll;
+    margin: 10px;
+    background: @primaryColor;
+}
+
+.weatherCard {
+    // .addShadow();
+    border-bottom: 1px solid #c0c0c0;
+    padding: 5px;
+    background: @primaryColor;
+    color: #fff
+}
+
+.loginWrapper:extend(.centerEverything,.fullPage){
+    color: red;
+}
+
+.selectedWeatherCard:extend(.weatherCard){
+    background: @secondaryColor !important;
+}
+
+.themeFont{
+    color: @secondaryColor
+}
+
+.impText {
+    .set-font(20px);
+    font-weight: 900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-transform: capitalize;
+}
+
+.cotainerHeader{
+    position: sticky;
+    top: 0;
+    background: lighten(@secondaryColor,20%);
+    padding: 5px;
+    font-weight: bold;
+}
+
+.bgImageClass{
+    width: 500px;
+}
+
+@keyframes zoomAnim {
+    0% {
+        transform: scale(0.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cardHoldder, .navbar {   
+      flex-direction: column;
+    }
+    .loginContainer{
+        width: 100vw;
+        height: 100vh;
+        transform: scale(1);
+        box-shadow: none;
+    }
+    .loginPage{
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+    }
+    .loginWrapper{
+        width: 100vw;
+        height: 100vh;
+    }
+    .blackHalf{
+        height: 0;
+    }
+    .bgImageClass{
+        width: 100px;
+    }
+  }
