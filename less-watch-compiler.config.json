@@ -1,6 +1,6 @@
 {
     "allowedExtensions":[".less"],
-    "minified":true,
+    "minified":false,
     "sourceMap":false,
     "watchFolder":"./src/assets/less",
     "outputFolder":"./src/assets/css"

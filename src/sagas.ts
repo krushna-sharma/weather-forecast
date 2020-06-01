@@ -20,7 +20,9 @@ import { IReducerActionType } from "interfaces";
 
 function* addWeatherData(action:IReducerActionType){
     // yield delay(1000)
+    yield put({type:"CHANGE_LOADING_STATUS",payload:true})
     const data = yield call(Api,apiList.GET_WEATHER_DATA.replace("{city_name}",action.payload),Method.GET,true)
+    yield put({type:"CHANGE_LOADING_STATUS",payload:false})
     console.log(data)
     yield put({type:actionTypes.ADD_WEATHER_DATA,payload:data.list})
 }
