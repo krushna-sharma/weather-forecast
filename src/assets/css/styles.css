@@ -168,6 +168,7 @@ button:focus {
   overflow-y: scroll;
   margin: 10px;
   background: #181a1b;
+  border-radius: 4px;
 }
 .weatherCard,
 .selectedWeatherCard {
