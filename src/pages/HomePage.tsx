@@ -60,7 +60,6 @@ const HomePage = (props: RouteComponentProps) => {
 					setShowAboutUs(true);
 				}}
 			/>
-			{/* <button  className="themeBtn" onClick={()=>getDataBtnClicked()}>GET DATA</button> */}
 			<SelectComponent
 				label="Cities"
 				selectedOptionCallback={(e: ISelectOptionType) => {
@@ -70,10 +69,20 @@ const HomePage = (props: RouteComponentProps) => {
 				options={cities}
 			/>
 			<div className="d-flex cardHoldder">
-				<div className="myContainer flex1">
-					{weatherDataArr[dataNo] && <FullWeatherComponent data={weatherDataArr[dataNo]} />}
+				<div className="myContainer flex1 centerEverything ">
+				{weatherDataArr.length===0 && 
+						<div >
+							Error
+						</div>
+					}
+					{weatherDataArr.length>0 && weatherDataArr[dataNo] && <FullWeatherComponent data={weatherDataArr[dataNo]} />}
 				</div>
 				<div className="myContainer flex1">
+					{weatherDataArr.length===0 && 
+						<div className="centerEverything flex1 full">
+							Error
+						</div>
+					}
 					{weatherDataArr &&
 						weatherDataArr.length > 0 &&
 						weatherDataArr.map((weatherData: any, index: number) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import InputComponent, { ValidationsType } from 'components/formComponents/InputComponent';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addUserData } from '../actions/index';
+import { addUserData, hideLoader } from '../actions/index';
 import bgImage from '../assets/images/weather.svg';
 
 const LoginPage = (props: RouteComponentProps) => {
@@ -19,11 +19,13 @@ const LoginPage = (props: RouteComponentProps) => {
 
 	useEffect(
 		() => {
+			dispatch(hideLoader())
 			setTimeout(() => {
 				setZoom(true);
+				// dispatch;
 			}, 10);
 		},
-		[ props ]
+		[ props,dispatch ]
 	);
 
 	const f_handleLogin = () => {
@@ -95,12 +97,7 @@ const LoginPage = (props: RouteComponentProps) => {
 						</div>
 						{showError && <div className="text-danger font10 centerEverything">{errorMsg}</div>}
 						<div className="ml-2">
-							<button
-								className="mt-2 themeBtn"
-								onClick={() => {
-									f_handleLogin();
-								}}
-							>
+							<button className="mt-2 themeBtn" onClick={f_handleLogin}>
 								Login
 							</button>
 						</div>

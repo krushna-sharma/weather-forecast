@@ -33,3 +33,17 @@ export const getCity = (cityName:string) => {
         payload:cityName
     }
 }
+
+export const showLoader = () => {
+    return {
+        type:actionTypes.CHANGE_LOADING_STATUS,
+        payload:true
+    }
+}
+
+export const hideLoader = () => {
+    return {
+        type:actionTypes.CHANGE_LOADING_STATUS,
+        payload:false
+    }
+}

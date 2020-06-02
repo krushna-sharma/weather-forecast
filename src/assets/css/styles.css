@@ -164,6 +164,7 @@ button:focus {
 }
 .myContainer {
   border: 1px solid black;
+  height: 50vh;
   max-height: 50vh;
   overflow-y: scroll;
   margin: 10px;

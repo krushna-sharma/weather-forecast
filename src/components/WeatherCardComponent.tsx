@@ -36,7 +36,7 @@ const WeatherCardComponent = (props: IWeatherCardProps) => {
 	return (
 		<div
             className={`${props.isSelected && props.isSelected ? "selectedWeatherCard":"weatherCard"} centerEverything`}
-            onClick={()=>props.onClickCallback!()}
+            onClick={props.onClickCallback!}
 			// style={{ background: `${colorArray[Math.floor(Math.random() * colorArray.length) + 1]}` }}
 		>
 			<div className=" flex-column flex1 centerEverything">

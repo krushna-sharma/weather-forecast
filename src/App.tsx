@@ -26,7 +26,6 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={LoginPage} />
 					<Route exact path={HomePage.pagePath} component={HomePage.component} />
-					{/* <Route exact path="/test" component={TestingPage} /> */}
 					{/* <Route exact component={Error404Page} /> */}
 					<Route path="*" component={Error404Page} />
 				</Switch>

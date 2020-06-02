@@ -6,7 +6,8 @@ export const cities: ISelectOptionType[] = [
     { value: 'Bengaluru', label: 'Bengaluru' },
     { value: 'Hyderabad', label: 'Hyderabad' },
     { value: 'Gangtok', label: 'Gangtok' },
-    { value: 'Darjeeling', label: 'Darjeeling' }
+    { value: 'Darjeeling', label: 'Darjeeling' },
+    { value: 'Shillong', label: 'Shillong' },
 ];
 
 export var colorArray = [
