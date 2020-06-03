@@ -13,7 +13,7 @@ const FullWeatherComponent = (props: IWeatherCardProps) => {
 
 	const getTableData = (lhs: string, rhs: number | string) => {
 		return (
-			<div className="d-flex">
+			<div className="d-flex mt-1 mb-1">
 				<span>{lhs}:&nbsp;</span>
 				<span className="themeFont">{rhs}</span>
 			</div>
@@ -22,7 +22,7 @@ const FullWeatherComponent = (props: IWeatherCardProps) => {
 
 	return (
 		<div className="leftContainer centerEverything flex-column">
-			<div className="font30">{city.toUpperCase()}</div>
+			<div className="font30 mb-3">{city.toUpperCase()}</div>
 			<img
 				style={{ width: '100px' }}
 				src={`${apiList.GET_ICON.replace('{icon_name}', weather[0].icon)}`}
@@ -44,7 +44,7 @@ const FullWeatherComponent = (props: IWeatherCardProps) => {
 					{getTableData('Clouds', clouds.all)}
 				</div>
 			</div>
-			<div className="font10">{moment(dt_txt, 'YYYY-MM-DD HH:mm:ss').format('DD MMMM hh:mm a')}</div>
+			<div className="font10 mt-3">{moment(dt_txt, 'YYYY-MM-DD HH:mm:ss').format('DD MMMM hh:mm a')}</div>
 		</div>
 	);
 };

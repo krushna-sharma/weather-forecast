@@ -7,19 +7,19 @@ import { actionTypes } from 'actions/actionTypes';
 import SelectComponent from 'components/formComponents/SelectComponent';
 import { ISelectOptionType } from '../components/formComponents/SelectComponent';
 import HeaderComponent from 'components/HeaderComponent';
-import WeatherCardComponent from 'components/WeatherCardComponent';
 import FullWeatherComponent from 'components/FullWeatherComponent';
 import { cities } from '../helpers/constsHelpers';
+import WeatherListComponent from 'components/WeatherListComponent';
 
 const pagePath = '/home';
 
 const HomePage = (props: RouteComponentProps) => {
 	const weatherDataArr = useSelector((state: any) => state.weather);
+	const dataNo = useSelector((state:any)=>state.dataNo)
 	let cityName = useSelector((state: any) => state.city);
 	let dispatch = useDispatch();
 
 	const [ showAboutUs, setShowAboutUs ] = useState(false);
-	const [ dataNo, setDataNo ] = useState(0);
 
 	useEffect(
 		() => {
@@ -54,48 +54,14 @@ const HomePage = (props: RouteComponentProps) => {
 
 	return (
 		<div className="fullPage p-5">
-			<HeaderComponent
-				onLogout={() => props.history.push('/')}
-				navLinkCallback={(showAboutUs: boolean) => {
-					setShowAboutUs(true);
-				}}
-			/>
-			<SelectComponent
-				label="Cities"
-				selectedOptionCallback={(e: ISelectOptionType) => {
-					console.log(e.label);
-					dispatch(getCity(e.label));
-				}}
-				options={cities}
-			/>
+			<HeaderComponent onLogout={() => props.history.push('/')} navLinkCallback={(showAboutUs: boolean) => {setShowAboutUs(true);}}/>
+			<SelectComponent label="Cities" selectedOptionCallback={(e: ISelectOptionType) => {dispatch(getCity(e.label));}} options={cities}/>
 			<div className="d-flex cardHoldder">
-				<div className="myContainer flex1 centerEverything ">
-				{weatherDataArr.length===0 && 
-						<div >
-							Error
-						</div>
-					}
+				<div className="myContainer flex1 centerEverything text-white">
+				{weatherDataArr.length===0 && <div>Error</div>}
 					{weatherDataArr.length>0 && weatherDataArr[dataNo] && <FullWeatherComponent data={weatherDataArr[dataNo]} />}
 				</div>
-				<div className="myContainer flex1">
-					{weatherDataArr.length===0 && 
-						<div className="centerEverything flex1 full">
-							Error
-						</div>
-					}
-					{weatherDataArr &&
-						weatherDataArr.length > 0 &&
-						weatherDataArr.map((weatherData: any, index: number) => {
-							return (
-								<WeatherCardComponent
-									key={index}
-									isSelected={dataNo === index ? true : false}
-									data={weatherData}
-									onClickCallback={() => setDataNo(index)}
-								/>
-							);
-						})}
-				</div>
+				<WeatherListComponent dataNo={dataNo} />
 			</div>
 			{getAboutUs()}
 		</div>

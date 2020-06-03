@@ -17,7 +17,6 @@ interface IWeatherApiResponse {
 }
 
 function App() {
-	// }, []);
 
 	return (
 		<ErrorPage>
