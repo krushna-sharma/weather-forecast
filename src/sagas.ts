@@ -22,11 +22,12 @@ function* addWeatherData(action: IReducerActionType) {
     // yield delay(1000)
     try {
         yield put(showLoader())
+        yield put({ type: actionTypes.CHANGE_CITY, payload: action.payload })
         const dataList = yield call(Api, apiList.GET_WEATHER_DATA.replace("{city_name}", action.payload), Method.GET, true)
         yield put(hideLoader())
+        // yield delay(5000)
         yield put({ type: actionTypes.RECENT_API_CALLS, payload: action.payload });
         yield put({ type: actionTypes.ADD_WEATHER_DATA, payload: { cityName: action.payload, data: dataList.list } })
-        yield put({ type: actionTypes.CHANGE_CITY, payload: action.payload })
     } catch (err) {
         yield put(hideLoader())
     }

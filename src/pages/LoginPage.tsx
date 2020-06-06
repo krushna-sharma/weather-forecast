@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import InputComponent, { ValidationsType } from 'components/formComponents/InputComponent';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUserData, hideLoader } from '../actions/index';
 import bgImage from '../assets/images/weather.svg';
+import { actionTypes } from 'actions/actionTypes';
 
 const LoginPage = (props: RouteComponentProps) => {
 	const [ zoom, setZoom ] = useState(false);
@@ -16,6 +17,7 @@ const LoginPage = (props: RouteComponentProps) => {
 	const passwordRef: any = useRef();
 
 	let dispatch = useDispatch();
+	let cityName = useSelector((state:any)=>state.city)
 
 	useEffect(
 		() => {
@@ -36,6 +38,7 @@ const LoginPage = (props: RouteComponentProps) => {
 
 		if (name === 'admin' && password === 'admin') {
 			dispatch(addUserData(body));
+			dispatch({ type: actionTypes.WEATHER_DATA, payload: cityName });
 			props.history.push('/home');
 		} else {
 			// nameRef.current.value=""

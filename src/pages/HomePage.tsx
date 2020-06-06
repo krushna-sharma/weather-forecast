@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import LocalStorage from 'helpers/LocalStorage/LocalStorageHelper';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUserData, getCity } from '../actions/index';
+import { addUserData } from '../actions/index';
 import { actionTypes } from 'actions/actionTypes';
 import SelectComponent from 'components/formComponents/SelectComponent';
 import { ISelectOptionType } from '../components/formComponents/SelectComponent';
@@ -23,20 +23,15 @@ const HomePage = (props: RouteComponentProps) => {
 	let dispatch = useDispatch();
 
 	const [ showAboutUs, setShowAboutUs ] = useState(false);
+	const [isApiCalled, setIsApiCalled] = useState(true);
 
 	useEffect(
 		() => {
-			// getApiCallStatus()
-			// .then((callApi) => {
-			// 	dispatch({ type: actionTypes.WEATHER_DATA, payload: cityName });
-			// })
-			// .catch(err=>{
-			// 	console.log("Prev data loaded")
-			// });
-			// console.log(weatherDataArr[cityName]);
-			
-			// dispatch({type:actionTypes.RECENT_API_CALLS,payload:cityName});
-			dispatch({ type: actionTypes.WEATHER_DATA, payload: cityName });
+			if(isApiCalled){
+				console.log(cityName)
+				dispatch({ type: actionTypes.WEATHER_DATA, payload: cityName });
+				setIsApiCalled(false)
+			}
 			let userData = new LocalStorage().getUserFromLocalStorage();
 			if (!userData || (userData.name === '' || userData.password === '')) {
 				props.history.push('/');
@@ -44,31 +39,21 @@ const HomePage = (props: RouteComponentProps) => {
 				dispatch(addUserData(userData));
 			}
 		},
-		[ dispatch, props,weatherDataArr ]
+		[ dispatch, props,weatherDataArr,cityName,isApiCalled ]
 	);
 
 	const getApiCallStatus = (selectedCity:string) => {
 		return new Promise((resolve, reject) => {
-			// let dataObj = {
-			// 	cityName: cityName,
-			// 	timestamp: moment().format('x')
-			// };
 			let recentApiData = recentApiCalls;
-			console.log(recentApiData,selectedCity)
 			let isCityCalled = _.includes(recentApiData.selectedCities, selectedCity);
-			console.log(isCityCalled);
 			
 			if (!isCityCalled) {
-				// dispatch({ type: actionTypes.RECENT_API_CALLS, payload: selectedCity });
 				resolve();
 			} else if (isCityCalled) {
 				let dd = recentApiData.citiesData[selectedCity].timestamp;
-				console.log(moment().diff(moment(dd, 'x')))
 				if (moment().diff(moment(dd, 'x')) >= 60000) {
-					// dispatch({ type: actionTypes.RECENT_API_CALLS, payload: selectedCity });
 					resolve();
 				}else{
-					// dispatch({ type: actionTypes.CHANGE_CITY, payload: selectedCity })
 					reject()
 				}
 			} else {
@@ -123,11 +108,12 @@ const HomePage = (props: RouteComponentProps) => {
 			/>
 			<div className="d-flex cardHoldder">
 				<div className="myContainer flex1 centerEverything text-white">
-					{_.isEmpty(weatherDataArr[cityName]) && <div>Error</div>}
-					{!_.isEmpty(weatherDataArr[cityName])  && <FullWeatherComponent data={weatherDataArr[cityName].data[dataNo]} />}
+					{!weatherDataArr[cityName] && <div>Error</div>}
+					{weatherDataArr[cityName]  && <FullWeatherComponent data={weatherDataArr[cityName][0][dataNo]} />}
 				</div>
 				{/* {weatherDataArr[cityName]!==undefined &&  */}
-				<WeatherListComponent dataNo={dataNo} cityName={cityName} data={weatherDataArr}/>
+			{/* <div>{weatherDataArr[]}</div> */}
+				<WeatherListComponent dataNo={dataNo} cityName="Akola" data={weatherDataArr}/>
 			</div>
 			{getAboutUs()}
 		</div>

@@ -1,31 +1,31 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import WeatherCardComponent from './WeatherCardComponent';
 import { actionTypes } from 'actions/actionTypes';
-import _ from 'lodash';
 
 const WeatherListComponent = (props:any) => {
 
-    const weatherDataArr = props.data;
+    const weatherDataArr = useSelector((state:any)=>state.weather);
 	const dispacth = useDispatch()
 
-	let dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
-	useEffect(() => {
+	// let dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
+	// useEffect(() => {
 
-		dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
-		console.log(dataList)
+	// 	// dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
+	// 	console.log(weatherDataArr)
+	// 	console.log(props.weatherDataArr)
 		
-	}, [weatherDataArr,props,dataList]);
+	// }, [weatherDataArr,props]);
 
     return (
         <div className="myContainer flex1">
-					{ dataList.length===0 && 
+					{!weatherDataArr[props.cityName] && 
 						<div className="centerEverything flex1 full text-white">
 							Error
 						</div>
 					}
-					{dataList.length > 0 &&
-						dataList.map((weatherData: any, index: number) => { 
+					{weatherDataArr!=={}  && weatherDataArr[props.cityName] &&
+						weatherDataArr[props.cityName][0].map((weatherData: any, index: number) => { 
 							return (
 								<WeatherCardComponent
 									key={index}
@@ -34,7 +34,10 @@ const WeatherListComponent = (props:any) => {
 									onClickCallback={() => dispacth({type:actionTypes.CHANGE_SELECTED_CARD_NO,payload:index})}
 								/>
 							);
-						})}
+						// return(<div style={{color:'white'}}>{index}</div>)
+						})
+				// <div style={{color:'white'}}>hello</div>
+						}
 				</div>
     );
 }
