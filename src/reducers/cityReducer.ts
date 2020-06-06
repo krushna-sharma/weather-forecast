@@ -3,11 +3,11 @@ import { actionTypes } from "actions/actionTypes";
 
 const cityReducer = (state="Akola",action:IReducerActionType) => {
         switch (action.type) {
-            case actionTypes.GET_CITY:{
+            case actionTypes.CHANGE_CITY:{
                 state = action.payload
                 return state
             }
-            case actionTypes.CHANGE_CITY:{
+            case actionTypes.ASYNC_CHANGE_CITY:{
                 return state
             }       
             default:
@@ -15,4 +15,4 @@ const cityReducer = (state="Akola",action:IReducerActionType) => {
         }
 }
 
-export default cityReducer;
+export default cityReducer; 

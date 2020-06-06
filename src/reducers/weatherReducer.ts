@@ -5,23 +5,23 @@ import { actionTypes } from "actions/actionTypes";
 //     data:[]
 // }
 
-const weatherReducer = (state = [],action:IReducerActionType) => {
+const weatherReducer = (state = {}, action: IReducerActionType) => {
 
     switch (action.type) {
-        case actionTypes.ADD_WEATHER_DATA:{
-            let weatherData = action.payload
-            state = weatherData
+        case actionTypes.ADD_WEATHER_DATA: {
+            let { cityName, data } = action.payload
+            console.log(cityName,data)
+            let weatherData: any = state
+            weatherData[cityName] =  { data: data } 
+            // state = action.payload.data
+            // return state
+            return weatherData
+        }
+
+        case actionTypes.WEATHER_DATA: {
             return state
         }
 
-        case actionTypes.WEATHER_DATA : {
-            return state
-        }
-
-        case actionTypes.GET_WEATHER_DATA : {
-            return state;
-        }
-    
         default:
             return state;
     }

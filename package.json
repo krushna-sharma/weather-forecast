@@ -10,6 +10,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^25.2.3",
     "@types/less": "^3.0.1",
+    "@types/lodash": "^4.14.155",
     "@types/moment": "^2.13.0",
     "@types/node": "^14.0.6",
     "@types/react": "^16.9.35",

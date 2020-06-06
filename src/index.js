@@ -11,7 +11,7 @@ import allReducers from './reducers/index'
 import mySagas from './sagas.ts'
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(allReducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+export const store = createStore(allReducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(mySagas);
 

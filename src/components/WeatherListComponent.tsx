@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import WeatherCardComponent from './WeatherCardComponent';
 import { actionTypes } from 'actions/actionTypes';
+import _ from 'lodash';
 
 const WeatherListComponent = (props:any) => {
 
-    const weatherDataArr = useSelector((state: any) => state.weather);
+    const weatherDataArr = props.data;
 	const dispacth = useDispatch()
+
+	let dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
+	useEffect(() => {
+
+		dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
+		console.log(dataList)
+		
+	}, [weatherDataArr,props,dataList]);
 
     return (
         <div className="myContainer flex1">
-					{weatherDataArr.length===0 && 
+					{ dataList.length===0 && 
 						<div className="centerEverything flex1 full text-white">
 							Error
 						</div>
 					}
-					{weatherDataArr &&
-						weatherDataArr.length > 0 &&
-						weatherDataArr.map((weatherData: any, index: number) => {
+					{dataList.length > 0 &&
+						dataList.map((weatherData: any, index: number) => { 
 							return (
 								<WeatherCardComponent
 									key={index}

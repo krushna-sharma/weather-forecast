@@ -28,8 +28,9 @@ export const getWeatherData = () => {
 }
 
 export const getCity = (cityName:string) => {
+
     return {
-        type:actionTypes.CHANGE_CITY,
+        type:actionTypes.ASYNC_CHANGE_CITY,
         payload:cityName
     }
 }
