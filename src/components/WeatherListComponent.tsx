@@ -5,7 +5,8 @@ import { actionTypes } from 'actions/actionTypes';
 
 const WeatherListComponent = (props:any) => {
 
-    const weatherDataArr = useSelector((state:any)=>state.weather);
+	const weatherDataArr = useSelector((state:any)=>state.weather);
+	const cityName = useSelector((state:any)=>state.city)
 	const dispacth = useDispatch()
 
 	// let dataList = _.isEmpty(weatherDataArr) ? [] : weatherDataArr[props.cityName].data
@@ -19,13 +20,13 @@ const WeatherListComponent = (props:any) => {
 
     return (
         <div className="myContainer flex1">
-					{!weatherDataArr[props.cityName] && 
+					{!weatherDataArr[cityName] && 
 						<div className="centerEverything flex1 full text-white">
 							Error
 						</div>
 					}
-					{weatherDataArr!=={}  && weatherDataArr[props.cityName] &&
-						weatherDataArr[props.cityName][0].map((weatherData: any, index: number) => { 
+					{weatherDataArr!=={}  && weatherDataArr[cityName] &&
+						weatherDataArr[cityName][0].map((weatherData: any, index: number) => { 
 							return (
 								<WeatherCardComponent
 									key={index}
