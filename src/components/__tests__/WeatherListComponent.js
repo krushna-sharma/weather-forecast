@@ -1,14 +1,24 @@
 import React from 'react';
 import { createStore } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { fireEvent, render as rtlRender, cleanup } from '@testing-library/react';
 import WeatherListComponent from 'components/WeatherListComponent';
 import allReducers from '../../reducers';
+import { Api, Method } from '../../helpers/apiHelper/webcall2';
+import { apiList } from '../../helpers/apiHelper/apiList';
 
 afterEach(cleanup);
 
-const initialState = {
-	dataNo: 0
+// jest.mock('axios',()=>({get:jest.fn()}))
+
+const initialReducerState = {
+	dataNo: 0,
+	user: {},
+	weather: {},
+	city: '',
+	loading: false,
+	dataNo: 0,
+	'recentApiCalls:': {}
 };
 
 function render(
@@ -22,12 +32,21 @@ function render(
 }
 
 describe('Testing', () => {
+	// jest.mock('axios',()=>({get:jest.fn()}))
+
+	const url = 'http://api.openweathermap.org/data/2.5/forecast?q=Akola&appid=3fbb2b31fd3e77c536be64abc677a4d1';
+
+	// it('making an async api call', async () => {
+	// 	const resp = await Api(apiList.GET_WEATHER_DATA.replace("{city_name}","Akola"),Method.GET,true)
+	// 	console.log(resp)
+	// });
+
 	it('No data loaded from API', () => {
-		const { queryByTestId } = render(<WeatherListComponent dataNo={0} />, { initialState: { dataNo: 0 } });
+		const { queryByTestId } = render(<WeatherListComponent dataNo={0} />);
 		expect(queryByTestId('list-container')).toHaveTextContent('Error');
 	});
 
-	it('Data loaded', () => {
+	it('Data loaded', async () => {
 		const initialStateData = {
 			dataNo: 0,
 			weather: {
@@ -69,10 +88,19 @@ describe('Testing', () => {
 					]
 				]
 			},
-			city:"Akola"
+			city: 'Akola'
 		};
-		const {queryByTestId} = render(<WeatherListComponent dataNo={0}/>,{initialState:initialStateData})
-		expect(queryByTestId('list-container')).toHaveTextContent('35°broken clouds35/33°C11 June03:00 PM');
+		const resp = await Api(apiList.GET_WEATHER_DATA.replace('{city_name}', 'Akola'), Method.GET, true);
+		const tree = await render(<WeatherListComponent dataNo={0} />, {
+			initialState: {
+				weather: { Akola: [resp.list] },
+				city:"Akola"
+			}
+		});
+		expect(tree).toMatchSnapshot();
+		// expect(tree.queryByTestId('list-container')).toHaveTextContent('35°broken clouds35/33°C11 June03:00 PM');
+		await console.log(tree.queryByTestId('list-container').children.length);
+		expect(tree.queryByTestId('list-container').childNodes.length).toBe(40)
 	});
 });
 
