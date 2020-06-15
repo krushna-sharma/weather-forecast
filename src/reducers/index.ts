@@ -5,6 +5,7 @@ import cityReducer from './cityReducer';
 import loadingReducer from './loadingReducer';
 import selectedCardReducer from './selectedCardReducer'
 import recentApiCallsReducer from './recentApiCallsReducer'
+import languageReducer from './languageReducer';
 
 const allReducers = combineReducers({
     user: userReducer,
@@ -12,7 +13,8 @@ const allReducers = combineReducers({
     city:cityReducer,
     loading:loadingReducer,
     dataNo:selectedCardReducer,
-    recentApiCalls:recentApiCallsReducer
+    recentApiCalls:recentApiCallsReducer,
+    language: languageReducer
 });
 
 export default allReducers;

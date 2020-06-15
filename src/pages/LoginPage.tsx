@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUserData, hideLoader } from '../actions/index';
 import bgImage from '../assets/images/weather.svg';
 import { actionTypes } from 'actions/actionTypes';
+import string from '../helpers/strings';
 
 const LoginPage = (props: RouteComponentProps) => {
 	const [ zoom, setZoom ] = useState(false);
@@ -17,17 +18,19 @@ const LoginPage = (props: RouteComponentProps) => {
 	const passwordRef: any = useRef();
 
 	let dispatch = useDispatch();
-	let cityName = useSelector((state:any)=>state.city)
+	let cityName = useSelector((state: any) => state.city);
+	const language = useSelector((state:any)=>state.language)
 
 	useEffect(
 		() => {
-			dispatch(hideLoader())
+			dispatch(hideLoader());
 			setTimeout(() => {
 				setZoom(true);
 				// dispatch;
 			}, 10);
+			string.setLanguage(language);
 		},
-		[ props,dispatch ]
+		[ props, dispatch,language ]
 	);
 
 	const f_handleLogin = () => {
@@ -68,7 +71,7 @@ const LoginPage = (props: RouteComponentProps) => {
 			<div className="loginWrapper">
 				<div className={`loginContainer p-3 ${zoom ? 'zoom' : ''}`}>
 					<div className="d-flex flex-column">
-						<h3 className="font-weight-bold">Welcome to Weatherify</h3>
+						<h3 className="font-weight-bold">{string.wlcmeText}</h3>
 						<div className="d-flex mb-3 flex-column">
 							<div className=" ">
 								<InputComponent
@@ -80,7 +83,7 @@ const LoginPage = (props: RouteComponentProps) => {
 									}}
 									isCompulsory={true}
 									validatefor={ValidationsType.COMPULSORY}
-									label="Name"
+									label={string.name}
 								/>
 							</div>
 							<div className=" ">
@@ -94,14 +97,14 @@ const LoginPage = (props: RouteComponentProps) => {
 									}}
 									isCompulsory={true}
 									validatefor={ValidationsType.COMPULSORY}
-									label="Password"
+									label={string.psw}
 								/>
 							</div>
 						</div>
 						{showError && <div className="text-danger font10 centerEverything">{errorMsg}</div>}
 						<div className="ml-2">
 							<button className="mt-2 themeBtn" onClick={f_handleLogin}>
-								Login
+								{string.login}
 							</button>
 						</div>
 					</div>
