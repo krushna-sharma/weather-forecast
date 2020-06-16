@@ -1,7 +1,7 @@
 import { IReducerActionType } from '../interfaces/index';
 
 
-const languageReducer = (state="hi",actions:IReducerActionType) => {
+const languageReducer = (state="en",actions:IReducerActionType) => {
     switch (actions.type) {
         case "CHANGE_LANGUAGE":{
             state = actions.payload;

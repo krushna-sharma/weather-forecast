@@ -9,8 +9,17 @@ const HeaderComponent = (props: any) => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		string.setLanguage(language);	
+		string.setLanguage(language);
+		console.log("lang==>" + language)	
 	}, [language,dispatch]);
+
+	const handleLangChange = () => {
+		if(language === "hi"){
+			dispatch({type:"CHANGE_LANGUAGE",payload:"en"})
+		}else if(language === "en"){
+			dispatch({type:"CHANGE_LANGUAGE",payload:"hi"})
+		}
+	}
 
 	return (
 		<div className="themeHeader d-flex align-items-baseline">
@@ -28,13 +37,9 @@ const HeaderComponent = (props: any) => {
 					{string.aboutUs}
 				</div>
 			</div>
-			<div className="font10 mr-2" style={{ cursor: 'pointer' }} onClick={()=>{
-				if(language === "hi"){
-					dispatch({type:"CHANGE_LANGUAGE",payload:"en"})
-				}else{
-					dispatch({type:"CHANGE_LANGUAGE",payload:"hi"})
-				}
-			}}>{string.cngLang}</div>
+			<div className="font10 mr-2" style={{ cursor: 'pointer' }} 
+			onClick={handleLangChange}
+			>{string.cngLang}</div>
 			<div
 				className="mr-3"
 				style={{ cursor: 'pointer' }}

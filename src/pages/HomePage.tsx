@@ -41,6 +41,7 @@ const HomePage = (props: RouteComponentProps) => {
 				dispatch(addUserData(userData));
 			}
 			string.setLanguage(language);
+			console.log("lang==>" + language)	
 		},
 		[ dispatch, props, weatherDataArr, cityName, isApiCalled,language ]
 	);
